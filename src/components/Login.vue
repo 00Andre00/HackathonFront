@@ -1,8 +1,9 @@
 <template>
-  <div class="flex items-center justify-center min-h-screen bg-gray-50">
-    <div class="w-full max-w-md p-6 bg-white shadow-lg rounded-lg border border-gray-200">
+  <div class="flex items-center justify-center min-h-screen bg-cover bg-center relative">
+    <div class="absolute inset-0 bg-[url('../assets/img/bkg.jpeg')] bg-cover bg-center opacity-50"></div>
+    <div class="relative w-full max-w-md p-6 bg-white shadow-lg rounded-lg border border-gray-200 z-10">
       <div>
-        <img src="../assets/img/abc.png" alt="Contraloria">
+        <img src="../assets/img/abc.png" alt="Contraloria" />
       </div>
       <!-- Título -->
       <h2 class="text-2xl font-semibold text-center text-gray-700">Iniciar sesión</h2>
@@ -55,7 +56,6 @@
     </div>
   </div>
 </template>
-
 
 <script setup lang="ts">
 import { ref } from 'vue'
@@ -122,6 +122,7 @@ const getUserRole = async (uid: string): Promise<string | null> => {
 </script>
 
 <style scoped>
+/* No es necesario más estilo aquí si usas Tailwind para el fondo */
 .error {
   color: red;
 }
