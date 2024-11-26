@@ -27,8 +27,7 @@
         <li v-if="rol === 'usuario'">
           <router-link
             to="/registrar-denuncia"
-            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium underline"
-          >
+            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium no-underline" >
             Registrar denuncia
           </router-link>
         </li>
@@ -76,7 +75,13 @@ button {
   border: none;
 }
 
+/* Sobrescribe la clase predeterminada de Vue Router */
 .router-link-active {
+  text-decoration: none; /* Eliminar el subrayado */
   text-decoration: underline;
+}
+
+.router-link-exact-active {
+  text-decoration: none; /* Eliminar el subrayado */
 }
 </style>

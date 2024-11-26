@@ -15,11 +15,26 @@
     </div>
     </template>
 
-  <template v-else>
-  <div class="flex-1 p-10 font-Roboto bg-gray-1-00 min-h-screen">
+    <template v-else>
+  <div class="flex-1 p-10 font-Roboto bg-gray-100 min-h-screen">
     <div class="mt-6 space-y-10">
       <!-- Título -->
       <h2 class="text-2xl font-bold text-gray-800 mb-6">Gestión de Registros</h2>
+
+      <!-- Filtro por Estado -->
+      <div class="flex items-center space-x-4">
+        <label for="estado" class="text-gray-700 font-medium">Filtrar por estado:</label>
+        <select
+          id="estado"
+          v-model="selectedEstado"
+          @change="filtrarPorEstado"
+          class="border-gray-300 rounded-lg px-4 py-2 shadow focus:ring-blue-500 focus:border-blue-500"
+        >
+          <option value="">Todos</option>
+          <option value="Desestimado">Desestimado</option>
+          <option value="Para servvicio de control">Para servvicio de control</option>
+        </select>
+      </div>
 
       <!-- Tabla -->
       <div class="overflow-x-auto mt-4">
@@ -44,9 +59,10 @@
           </thead>
           <tbody>
             <tr
-              v-for="(item, index) in items"
+              v-for="(item, index) in filteredItems"
               :key="item.id"
-              class="bg-white hover:bg-gray-50">
+              class="bg-white hover:bg-gray-50"
+            >
               <td class="px-6 py-4 border-b">{{ index + 1 + (currentPage - 1) * itemsPerPage }}</td>
               <td class="px-6 py-4 border-b">{{ item.ambitoGeografico }}</td>
               <td class="px-6 py-4 border-b">{{ item.auditorEncargadoDeLaEtapaDeEvaluacion }}</td>
@@ -88,6 +104,8 @@
   </div>
 </template>
 
+
+
 </template>
 
 <script setup lang="ts">
@@ -95,7 +113,15 @@ import { ref, onMounted } from 'vue'
 import { firestore } from '@/firebase'
 import { collection, query, orderBy, limit, startAfter, getDocs } from 'firebase/firestore'
 
-const load = ref(false);
+// Variables reactivas
+const load = ref(false)
+const items = ref<Registro[]>([]) // Lista de registros completos
+const filteredItems = ref<Registro[]>([]) // Lista filtrada
+const selectedEstado = ref('') // Estado seleccionado para filtrar
+const itemsPerPage = 10 // Cantidad de registros por página
+const currentPage = ref(1) // Página actual
+const lastVisible = ref(null) // Último documento visible en Firestore
+const hasMore = ref(true) // Si hay más registros disponibles
 
 // Define el tipo de datos
 interface Registro {
@@ -115,30 +141,28 @@ interface Registro {
   resultadoDeLaEtapaDeRecepcion: string
 }
 
-// Variables reactivas
-const items = ref<Registro[]>([]) // Lista de registros
-const itemsPerPage = 10 // Cantidad de registros por página
-const currentPage = ref(1) // Página actual
-const lastVisible = ref(null) // Último documento visible en Firestore
-const hasMore = ref(true) // Si hay más registros disponibles
+// Función para filtrar registros por estado
+const filtrarPorEstado = () => {
+  if (selectedEstado.value === '') {
+    filteredItems.value = items.value // Mostrar todos si no hay filtro
+  } else {
+    filteredItems.value = items.value.filter(
+      (item) => item.resultadoDeLaEtapaDeEvaluacion === selectedEstado.value
+    )
+  }
+}
 
-// Función para obtener datos de Firestore con paginación
 // Función para obtener datos de Firestore con paginación
 const obtenerRegistros = async (reset: boolean = false) => {
-  load.value = true; // Muestra indicador de carga
+  load.value = true
   try {
     if (reset) {
-      // Reinicia la paginación
-      items.value = [];
-      lastVisible.value = null;
-      currentPage.value = 1;
-      hasMore.value = true;
-    } else {
-      // Limpiar la lista al cambiar de página (evitar acumulación)
-      items.value = [];
+      items.value = []
+      lastVisible.value = null
+      currentPage.value = 1
+      hasMore.value = true
     }
 
-    // Construir consulta Firestore
     const registrosQuery = lastVisible.value
       ? query(
           collection(firestore, 'registros'),
@@ -150,40 +174,35 @@ const obtenerRegistros = async (reset: boolean = false) => {
           collection(firestore, 'registros'),
           orderBy('ambitoGeografico'),
           limit(itemsPerPage)
-        );
+        )
 
-    // Obtener documentos
-    const querySnapshot = await getDocs(registrosQuery);
+    const querySnapshot = await getDocs(registrosQuery)
 
     if (!querySnapshot.empty) {
       const nuevosRegistros = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
-      } as Registro));
+      } as Registro))
 
-      // Actualizar la lista de items con los nuevos registros
-      items.value = nuevosRegistros;
-
-      // Guardar el último documento visible
-      lastVisible.value = querySnapshot.docs[querySnapshot.docs.length - 1];
-
-      // Si se cargan menos elementos que el límite, no hay más registros
-      hasMore.value = nuevosRegistros.length === itemsPerPage;
+      items.value = nuevosRegistros
+      filteredItems.value = nuevosRegistros // Actualizar la lista filtrada
+      lastVisible.value = querySnapshot.docs[querySnapshot.docs.length - 1]
+      hasMore.value = nuevosRegistros.length === itemsPerPage
     } else {
-      hasMore.value = false;
+      hasMore.value = false
     }
   } catch (error) {
-    console.error('Error al obtener registros:', error);
+    console.error('Error al obtener registros:', error)
   } finally {
-    load.value = false; // Oculta indicador de carga
+    load.value = false
   }
-};
+}
 
 // Función para ir a la página anterior
 const prevPage = async () => {
   if (currentPage.value > 1) {
     currentPage.value--
-    await obtenerRegistros(true) // Reiniciar y cargar desde el inicio
+    await obtenerRegistros(true)
   }
 }
 
@@ -191,7 +210,7 @@ const prevPage = async () => {
 const nextPage = async () => {
   if (hasMore.value) {
     currentPage.value++
-    await obtenerRegistros() // Cargar más registros
+    await obtenerRegistros()
   }
 }
 
@@ -200,7 +219,3 @@ onMounted(() => {
   obtenerRegistros()
 })
 </script>
-
-<style scoped>
-/* Estilo adicional */
-</style>
