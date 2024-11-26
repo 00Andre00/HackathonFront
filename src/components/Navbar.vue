@@ -1,28 +1,39 @@
 <template>
   <nav>
     <ul>
-      <li><router-link to="/inicio">Inicio</router-link></li>
-      <!-- Mostrar botón de Dashboard solo si es admin -->
-      <li v-if="rol === 'administrador'"><router-link to="/dashboard">Dashboard</router-link></li>
-      <li><button @click="logout">Cerrar sesión</button></li>
+      <!-- Mostrar "Inicio" para todos los usuarios -->
+      <li v-if="rol === 'usuario'">
+        <router-link to="/inicio">Inicio</router-link>
+      </li>
+
+      <!-- Mostrar "Dashboard" solo para administradores -->
+      <li v-if="rol === 'administrador'">
+        <router-link to="/dashboard">Dashboard</router-link>
+      </li>
+
+      <!-- Cerrar sesión -->
+      <li>
+        <button @click="logout">Cerrar sesión</button>
+      </li>
     </ul>
   </nav>
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useUsuarioStore } from '@/stores/userStore'
 import { useRouter } from 'vue-router'
 
 const usuarioStore = useUsuarioStore()
 const router = useRouter()
 
-// Obtener el rol del usuario desde el store
-const rol = usuarioStore.rol
+// Reactividad para el rol
+const rol = computed(() => usuarioStore.rol)
 
 // Función para cerrar sesión
 const logout = () => {
   usuarioStore.logout()
-  router.push('/')  // Redirigir al login después de cerrar sesión
+  router.push('/') // Redirigir al login después de cerrar sesión
 }
 </script>
 

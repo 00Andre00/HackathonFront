@@ -1,55 +1,61 @@
 <template>
-  <div class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="w-full max-w-md p-8 bg-white shadow-md rounded-lg">
+  <div class="flex items-center justify-center min-h-screen bg-gray-50">
+    <div class="w-full max-w-md p-6 bg-white shadow-lg rounded-lg border border-gray-200">
+      <div>
+        <img src="../assets/img/abc.png" alt="No hay foto">
+      </div>
+      <!-- Título -->
       <h2 class="text-2xl font-semibold text-center text-gray-700">Iniciar sesión</h2>
       <p class="mt-2 text-center text-sm text-gray-500">
-        Ingresa tus credenciales para continuar.
+        ¿Aún no tienes una cuenta? 
+        <router-link to="/registro" class="text-blue-500 hover:underline">Regístrate aquí</router-link>.
       </p>
 
+      <!-- Formulario -->
       <form @submit.prevent="login" class="mt-6">
         <div class="mb-4">
-          <label for="username" class="block text-sm font-medium text-gray-600">Usuario</label>
+          <label for="email" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
           <input
-            type="text"
-            id="username"
+            type="email"
+            id="email"
             v-model="username"
             required
-            placeholder="Ingresa tu usuario"
-            class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+            placeholder="Correo electrónico"
+            class="w-full px-4 py-3 mt-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
 
         <div class="mb-4">
-          <label for="password" class="block text-sm font-medium text-gray-600">Contraseña</label>
-          <input
-            type="password"
-            id="password"
-            v-model="password"
-            required
-            placeholder="Ingresa tu contraseña"
-            class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
-          />
+          <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+          <div class="relative">
+            <input
+              type="password"
+              id="password"
+              v-model="password"
+              required
+              placeholder="Contraseña"
+              class="w-full px-4 py-3 mt-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
         </div>
 
+        <!-- Botón de inicio de sesión -->
         <button
           type="submit"
-          class="w-full px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 focus:outline-none"
+          class="w-full px-4 py-3 text-white bg-blue-600 rounded-lg font-medium hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none"
         >
-          Iniciar sesión
+          INICIAR SESIÓN
         </button>
       </form>
 
+      <!-- Mensaje de error -->
       <p v-if="errorMessage" class="mt-4 text-center text-sm text-red-600">
         {{ errorMessage }}
-      </p>
-
-      <p class="mt-4 text-center text-sm text-gray-500">
-        ¿No tienes una cuenta? 
-        <router-link to="/registro" class="text-blue-500 hover:underline">Regístrate aquí</router-link>.
       </p>
     </div>
   </div>
 </template>
+
 
 <script setup lang="ts">
 import { ref } from 'vue'
@@ -101,11 +107,9 @@ const login = async () => {
 // Obtener el rol del usuario desde Firestore usando el uid
 const getUserRole = async (uid: string): Promise<string | null> => {
   try {
-    // Obtener el documento del usuario desde Firestore
     const userDoc = await getDoc(doc(firestore, 'users', uid))
 
     if (userDoc.exists()) {
-      // Retornar el rol del usuario
       return userDoc.data()?.role || null
     } else {
       return null
@@ -118,7 +122,6 @@ const getUserRole = async (uid: string): Promise<string | null> => {
 </script>
 
 <style scoped>
-/* Estilo para los mensajes de error */
 .error {
   color: red;
 }

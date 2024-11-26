@@ -3,6 +3,7 @@ import { createPinia } from 'pinia'; // Importar Pinia
 
 import App from './App.vue'; // Tu componente principal
 import router from './router'; // El enrutador
+import '@/assets/main.css'
 
 // Importa Firebase
 import { app, auth, firestore } from '@/firebase';
