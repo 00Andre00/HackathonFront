@@ -4,11 +4,13 @@ import Login from '@/components/Login.vue'
 import Registro from '@/components/Registro.vue' // Importamos el componente de registro
 import Inicio from '@/views/Inicio.vue'
 import Dashboard from '@/components/Dashboard.vue'
+import RegistrarDenuncia from "@/views/RegistrarDenuncia.vue";
 
 const routes = [
   { path: '/', name: 'Login', component: Login },
   { path: '/registro', name: 'Registro', component: Registro }, // Ruta para el registro
   { path: '/inicio', name: 'Inicio', component: Inicio },
+  { path: "/registrar-denuncia", name: "RegistrarDenuncia", component: RegistrarDenuncia },
   {
     path: '/dashboard',
     name: 'Dashboard',

@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
+import { getFirestore, collection, doc, addDoc, setDoc, getDoc } from 'firebase/firestore';
 
 // Acceder a las variables de entorno
 const firebaseConfig = {
@@ -26,5 +26,7 @@ export {
   signOut, 
   setDoc, 
   doc, 
-  getDoc 
+  getDoc,
+  collection,
+  addDoc // Aquí añadimos las funciones que necesitamos para agregar documentos
 };
