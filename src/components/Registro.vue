@@ -1,6 +1,9 @@
 <template>
-    <div class="register-container flex items-center justify-center min-h-screen bg-gray-100">
-      <div class="w-full max-w-md p-8 bg-white shadow-md rounded-lg">
+    <div class="flex items-center justify-center min-h-screen bg-gray-50">
+      <div class="w-full max-w-md p-6 bg-white shadow-lg rounded-lg border border-gray-200">
+        <div>
+          <img src="../assets/img/abc.png" alt="Contraloria">
+        </div>
         <h2 class="text-2xl font-semibold text-center text-gray-700">Crear una cuenta</h2>
         <form @submit.prevent="register" class="mt-6">
           <div class="mb-4">
