@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Inicio from '@/views/Inicio.vue';
 import Inicio2 from '@/views/Inicio2.vue';
-import Login from '@/views/Login.vue'; // Importa el nuevo componente de Login
+import Login from '@/views/Login.vue';
 
 const routes = [
   { path: '/', name: 'Inicio', component: Inicio },
