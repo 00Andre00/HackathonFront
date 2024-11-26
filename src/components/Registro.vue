@@ -7,34 +7,34 @@
         <h2 class="text-2xl font-semibold text-center text-gray-700">Crear una cuenta</h2>
         <form @submit.prevent="register" class="mt-6">
           <div class="mb-4">
-            <label for="email" class="block text-sm font-medium text-gray-600">Correo electrónico</label>
+            <label for="email" class="block text-xm text-gray-600">Correo electrónico</label>
             <input
               type="email"
               id="email"
               v-model="email"
               required
-              class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+              class="w-full px-4 py-3 mt-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
               placeholder="Ingresa tu correo"
             />
           </div>
           <div class="mb-4">
-            <label for="password" class="block text-sm font-medium text-gray-600">Contraseña</label>
+            <label for="password" class="block text-xm text-gray-600">Contraseña</label>
             <input
               type="password"
               id="password"
               v-model="password"
               required
-              class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+              class="w-full px-4 py-3 mt-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
               placeholder="Ingresa tu contraseña"
             />
           </div>
           <div class="mb-4">
-            <label for="role" class="block text-sm font-medium text-gray-600">Rol</label>
+            <label for="role" class="block text-xm text-gray-600">Rol</label>
             <select
               id="role"
               v-model="role"
               required
-              class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+              class="w-full px-4 py-3 mt-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
             >
               <option value="" disabled>Selecciona un rol</option>
               <option value="usuario">Usuario</option>
