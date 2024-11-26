@@ -1,36 +1,19 @@
 <template>
     <template v-if="load">
-    <div class="flex-1 p-10 border-s-2 bg-gray-100">
-      <div class="flex justify-center items-center content-center px-14 flex-col">
-        <h3 class="bg-gray-200 h-12 w-[70%] rounded-lg duration-200 skeleton-loader"></h3>
-      </div>
-      <div class="bg-white rounded-lg shadow-lg p-6 h-auto mt-4 animate-pulse duration-200">
-        <div class="block space-y-5">
-          <h2 class="bg-gray-200 h-10 w-full rounded-md skeleton-loader duration-200"></h2>
-          <h2 class="bg-gray-200 h-14 w-full rounded-md skeleton-loader duration-200"></h2>
-          <h2 class="bg-gray-200 h-14 w-full rounded-md skeleton-loader duration-200"></h2>
-          <h2 class="bg-gray-200 h-10 mt-1 w-[5%] rounded-md skeleton-loader duration-200"></h2>
-          <h2 class="bg-gray-200 h-14 mt-4 w-full rounded-md skeleton-loader duration-200"></h2>
-        </div>
-      </div>
-      <div class="bg-white rounded-lg shadow-lg p-6 h-auto mt-4 animate-pulse duration-200">
-        <div class="block space-y-5">
-          <h2 class="bg-gray-200 h-7 w-full rounded-md skeleton-loader duration-200"></h2>
-          <h2 class="bg-gray-200 h-14 w-full rounded-md skeleton-loader duration-200"></h2>
-          <h2 class="bg-gray-200 h-14 w-full rounded-md skeleton-loader duration-200"></h2>
-        </div>
-      </div>
-      <div class="bg-white rounded-lg shadow-lg p-6 h-auto mt-4 animate-pulse duration-200">
-        <div class="block space-y-5">
-          <h2 class="bg-gray-200 h-7 w-full rounded-md skeleton-loader duration-200"></h2>
-          <h2 class="bg-gray-200 h-14 w-full rounded-md skeleton-loader duration-200"></h2>
-          <h2 class="bg-gray-200 h-14 w-full rounded-md skeleton-loader duration-200"></h2>
-          <h2 class="bg-gray-200 h-14 mt-1 w-15 rounded-md skeleton-loader duration-200"></h2>
-          <h2 class="bg-gray-200 h-14 mt-4 w-full rounded-md skeleton-loader duration-200"></h2>
+    <div class="min-h-screen bg-gray-100 p-8">
+      <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6">
+        <div class="bg-white rounded-lg shadow-lg p-6 h-auto mt-4 animate-pulse duration-200">
+          <div class="block space-y-5">
+            <h2 class="bg-gray-200 h-10 w-full rounded-md skeleton-loader duration-200"></h2>
+            <h2 class="bg-gray-200 h-14 w-full rounded-md skeleton-loader duration-200"></h2>
+            <h2 class="bg-gray-200 h-14 w-full rounded-md skeleton-loader duration-200"></h2>
+            <h2 class="bg-gray-200 h-10 mt-1 w-[5%] rounded-md skeleton-loader duration-200"></h2>
+            <h2 class="bg-gray-200 h-14 mt-4 w-full rounded-md skeleton-loader duration-200"></h2>
+          </div>
         </div>
       </div>
     </div>
-  </template>
+    </template>
 
   <template v-else>
   <div class="min-h-screen bg-gray-100 p-8">
