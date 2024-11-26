@@ -16,15 +16,15 @@
     </template>
 
   <template v-else>
-  <div class="min-h-screen bg-gray-100 p-8">
-    <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6">
+  <div class="flex-1 p-10 font-Roboto bg-gray-1-00 min-h-screen">
+    <div class="mt-6 space-y-10">
       <!-- Título -->
       <h2 class="text-2xl font-bold text-gray-800 mb-6">Gestión de Registros</h2>
 
       <!-- Tabla -->
-      <div class="overflow-x-auto">
-        <table class="w-full text-sm text-left text-gray-500 border border-gray-200 rounded-lg">
-          <thead class="bg-gray-50 text-gray-700 uppercase text-sm">
+      <div class="overflow-x-auto mt-4">
+        <table class="w-full max-w-full bg-white border rounded-md shadow">
+          <thead>
             <tr>
               <th scope="col" class="px-6 py-3 border-b">#</th>
               <th scope="col" class="px-6 py-3 border-b">Ámbito Geográfico</th>
