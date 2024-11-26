@@ -2,7 +2,7 @@
   <div class="flex items-center justify-center min-h-screen bg-gray-50">
     <div class="w-full max-w-md p-6 bg-white shadow-lg rounded-lg border border-gray-200">
       <div>
-        <img src="../assets/img/abc.png" alt="No hay foto">
+        <img src="../assets/img/abc.png" alt="Contraloria">
       </div>
       <!-- Título -->
       <h2 class="text-2xl font-semibold text-center text-gray-700">Iniciar sesión</h2>
