@@ -1,11 +1,10 @@
-<script lang="ts" setup>
-</script>
-
 <template>
-  <div class="min-h-screen flex items-center justify-center">
-    <h1 class="text-4xl font-bold">¡Bienvenido a Inicio!</h1>
+  <div class="inicio">
+    <h2>Bienvenido a la página de inicio</h2>
+    <p>Contenido accesible para todos los usuarios.</p>
   </div>
 </template>
 
-<style scoped>
-</style>
+<script setup lang="ts">
+// Sin lógica adicional, es solo una página de bienvenida para los usuarios
+</script>
