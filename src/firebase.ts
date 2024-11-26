@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 
 // Acceder a las variables de entorno
 const firebaseConfig = {
@@ -16,11 +16,15 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const firestore = getFirestore(app);
 
+// Exportar funciones de autenticación y Firestore
 export { 
   app, 
   auth, 
-  firestore,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut
+  firestore, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, 
+  signOut, 
+  setDoc, 
+  doc, 
+  getDoc 
 };
