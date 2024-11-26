@@ -8,7 +8,7 @@ import router from './router'
 import Navbar from '@/components/Navbar.vue'
 
 // Importa Firebase
-import { app, auth, firestore } from 'src/firebase'
+import { app, auth, firestore } from '@/firebase'
 
 // Crear la instancia de la app Vue
 const vueApp = createApp(App)

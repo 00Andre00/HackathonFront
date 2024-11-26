@@ -1,26 +1,26 @@
-// Importar las funciones necesarias del SDK de Firebase
 import { initializeApp } from 'firebase/app';
-import type { FirebaseApp } from 'firebase/app'; // Importación tipo-only
-import { getAuth } from 'firebase/auth';
-import type { Auth } from 'firebase/auth'; // Importación tipo-only
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
-import type { Firestore } from 'firebase/firestore'; // Importación tipo-only
 
-// Configuración de Firebase (esto lo obtienes desde tu consola de Firebase)
+// Acceder a las variables de entorno
 const firebaseConfig = {
-  apiKey: "AIzaSyDTk1WY33v3HYrKJXYs4VV1p4xkMOx57zg",
-  authDomain: "hackathon-2c86e.firebaseapp.com",
-  projectId: "hackathon-2c86e",
-  storageBucket: "hackathon-2c86e.firebasestorage.app",
-  messagingSenderId: "475519267269",
-  appId: "1:475519267269:web:fc302ba14211d50f241bac"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
-// Inicializar Firebase
-const app: FirebaseApp = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const firestore = getFirestore(app);
 
-// Exportar las instancias de Firebase que necesites
-const auth: Auth = getAuth(app);
-const firestore: Firestore = getFirestore(app);
-
-export { app, auth, firestore };
+export { 
+  app, 
+  auth, 
+  firestore,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut
+};
