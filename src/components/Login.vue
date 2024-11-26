@@ -8,7 +8,7 @@
       <h2 class="text-2xl font-semibold text-center text-gray-700">Iniciar sesión</h2>
       <p class="mt-2 text-center text-sm text-gray-500">
         ¿Aún no tienes una cuenta? 
-        <router-link to="/registro" class="text-blue-500 hover:underline">Regístrate aquí</router-link>.
+        <router-link to="/registro" class="text-red-500 hover:underline">Regístrate aquí</router-link>.
       </p>
 
       <!-- Formulario -->
@@ -42,7 +42,7 @@
         <!-- Botón de inicio de sesión -->
         <button
           type="submit"
-          class="w-full px-4 py-3 text-white bg-blue-600 rounded-lg font-medium hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none"
+          class="w-full px-4 py-3 text-white bg-red-600 rounded-lg font-medium hover:bg-red-700 focus:ring-4 focus:ring-blue-300 focus:outline-none"
         >
           INICIAR SESIÓN
         </button>

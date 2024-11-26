@@ -43,7 +43,7 @@
           </div>
           <button
             type="submit"
-            class="w-full px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 focus:outline-none"
+            class="w-full px-4 py-3 text-white bg-red-600 rounded-lg font-medium hover:bg-red-700 focus:ring-4 focus:ring-blue-300 focus:outline-none"
           >
             Registrarse
           </button>
@@ -51,7 +51,7 @@
         <p v-if="errorMessage" class="mt-4 text-center text-sm text-red-600">{{ errorMessage }}</p>
         <p class="mt-4 text-center text-sm text-gray-500">
           ¿Ya tienes una cuenta? 
-          <router-link to="/" class="text-blue-500 hover:underline">Inicia sesión</router-link>.
+          <router-link to="/" class="text-red-500 hover:underline">Inicia sesión</router-link>.
         </p>
       </div>
     </div>
