@@ -1,21 +1,37 @@
 <template>
-  <nav>
-    <ul>
-      <!-- Mostrar "Inicio" para todos los usuarios -->
-      <li v-if="rol === 'usuario'">
-        <router-link to="/inicio">Inicio</router-link>
-      </li>
+  <nav class="bg-gray-800 text-white px-6 py-4 shadow-lg">
+    <div class="container mx-auto flex items-center justify-between">
+      <!-- Menú de navegación -->
+      <ul class="flex items-center space-x-6">
+        <!-- Mostrar "Inicio" para todos los usuarios -->
+        <li v-if="rol === 'usuario'">
+          <router-link
+            to="/inicio"
+            class="hover:text-blue-400 font-medium text-lg"
+          >
+            Inicio
+          </router-link>
+        </li>
 
-      <!-- Mostrar "Dashboard" solo para administradores -->
-      <li v-if="rol === 'administrador'">
-        <router-link to="/dashboard">Dashboard</router-link>
-      </li>
+        <!-- Mostrar "Dashboard" solo para administradores -->
+        <li v-if="rol === 'administrador'">
+          <router-link
+            to="/dashboard"
+            class="hover:text-blue-400 font-medium text-lg"
+          >
+            Dashboard
+          </router-link>
+        </li>
+      </ul>
 
-      <!-- Cerrar sesión -->
-      <li>
-        <button @click="logout">Cerrar sesión</button>
-      </li>
-    </ul>
+      <!-- Botón de cerrar sesión -->
+      <button
+        @click="logout"
+        class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg"
+      >
+        Cerrar sesión
+      </button>
+    </div>
   </nav>
 </template>
 
@@ -38,30 +54,15 @@ const logout = () => {
 </script>
 
 <style scoped>
+/* Mejoras de diseño */
 nav {
-  background-color: #333;
+  background-color: #1f2937; /* Gris oscuro */
   color: white;
-  padding: 10px;
-}
-
-ul {
-  display: flex;
-  gap: 10px;
-}
-
-li {
-  list-style-type: none;
-}
-
-a {
-  color: white;
-  text-decoration: none;
 }
 
 button {
-  background-color: red;
-  color: white;
+  font-size: 14px;
+  font-weight: bold;
   border: none;
-  padding: 5px 10px;
 }
 </style>
