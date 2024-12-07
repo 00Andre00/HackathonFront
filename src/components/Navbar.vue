@@ -5,12 +5,12 @@
       <ul class="flex items-center space-x-6">
         <!-- Mostrar "Inicio" para todos los usuarios -->
         <li v-if="rol === 'usuario'">
-          <router-link
+          <!-- <router-link
             to="/inicio"
-            class="hover:text-blue-400 font-medium text-lg"
+            class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-medium"
           >
             Inicio
-          </router-link>
+          </router-link> -->
         </li>
 
         <!-- Mostrar "Dashboard" solo para administradores -->
@@ -20,6 +20,15 @@
             class="hover:text-blue-400 font-medium text-lg"
           >
             Dashboard
+          </router-link>
+        </li>
+
+        <!-- Mostrar "Registrar" solo para usuarios -->
+        <li v-if="rol === 'usuario'">
+          <router-link
+            to="/registrar-denuncia"
+            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium no-underline" >
+            Registrar denuncia
           </router-link>
         </li>
       </ul>
@@ -64,5 +73,15 @@ button {
   font-size: 14px;
   font-weight: bold;
   border: none;
+}
+
+/* Sobrescribe la clase predeterminada de Vue Router */
+.router-link-active {
+  text-decoration: none; /* Eliminar el subrayado */
+  text-decoration: underline;
+}
+
+.router-link-exact-active {
+  text-decoration: none; /* Eliminar el subrayado */
 }
 </style>
